@@ -1,0 +1,15 @@
+## Ignore Platformio and vscode
+.pio
+.vscode/
+
+## Ignore Microchip Studio
+[Dd]ebug/
+[Rr]elease/
+.vs/
+*.cppproj
+*.componentinfo.xml
+
+hex/*.hex
+hex/*.lss
+include/node_firmware.h
+include/node_firmware_build_time.h

@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "MCU"
+		},
+		{
+			"path": "Shared"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.lss": "platformio-debug.asm",
+			"io.h": "c",
+			"timer.h": "c",
+			"power.h": "c"
+		}
+	}
+}
