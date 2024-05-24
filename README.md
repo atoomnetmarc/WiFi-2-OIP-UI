@@ -80,6 +80,8 @@ Flash the firmware of the ESP32-S2. The firmware of the ATmega48 MCU of the disp
 
 LCD is a 128x64 Crystal Clear Technology [G64128S18YBW00](https://www.arrow.com/en/products/g64128s18ybw00/crystal-clear-technology-sdn-bhd). It contains a [Novatek NT7534](https://www.crystalfontz.com/controllers/Novatek/NT7534/) controller.
 
+When testing with [U8g2](https://github.com/olikraus/u8g2) using U8G2_ST7565_ERC12864_ALT results in a working LCD.
+
 ## MCU
 
 The MCU is a TQFP-32 [Atmega48](https://www.microchip.com/en-us/product/atmega48) that is responsible for driving the 20 red and 20 green LEDs and the backlight of the LCD.
