@@ -59,7 +59,15 @@ Make sure none of the pins (ESP32-S2, U1, J2) of this PCB touch display board:
 
 Flash the firmware of the ESP32-S2. The firmware of the ATmega48 MCU of the display board is embedded in the  ESP32-S2 firmware and will be flashed by the ESP32-S2.
 
+# 3D-printed stand
+
+You could 3d-print [a stand](3d/WiFi-2-OIP-UI%20stand.stl) for this contraption.
+
+![](3d/WiFi-2-OIP-UI%20stand.jpg)
+
 # Display board
+
+Information about the display board.
 
 ## Pinout J201
 
