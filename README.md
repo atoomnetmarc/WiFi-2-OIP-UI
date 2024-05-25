@@ -63,7 +63,7 @@ Flash the firmware of the ESP32-S2. The firmware of the ATmega48 MCU of the disp
 
 You could 3d-print [a stand](3d/WiFi-2-OIP-UI%20stand.stl) for this contraption.
 
-![](3d/WiFi-2-OIP-UI%20stand.jpg)
+![](3d/WiFi-2-OIP-UI%20stand%20printed.jpg)
 
 # Display board
 
