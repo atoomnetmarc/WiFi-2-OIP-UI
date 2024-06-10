@@ -36,20 +36,20 @@ Solder F1, D1.  Solder U1 (the buck converter) laying flat (PCBs are now on the 
 
 Set your lab power supply to 12V CV, 0.25A CC. Then connect 12V to J2. Observe less than 10mA current. Measure 5V between TP203 and ground. Disconnect power supply.
 
-Passed? Now solder A1 (the ESP32-S2 module). Did not you use low profile pin header then cut pins flush with PCB. Works best before soldering.
+Passed? Now solder A1 (the ESP32-S2 module). Do you not use low profile pin headers? Then cut pins flush with PCB. Works best before soldering.
 
-Connect power supply again. Observe about 40mA current. Disconnect power supply.
+Connect power supply again. Observe about 10mA current if ESP32-S2 is new and empty or about 40mA when flashed with firmware. Disconnect power supply.
 
 Desolder the J201 MicroMatch 1.27mm socket from the display board.
 
 Gently clean the PCB and the ESP32-S2 if you want.
 
-Connect this PCB to the back of the display board using 2 pieces of 1x5 2.54mm pin headers in the J201 footprints of both PCBs. The hole J202 on both PCB should almost align. But do not solder the header yet.
+Connect this PCB to the back of the display board using 2 pieces of low profile 1x5 2.54mm pin headers in the J201 footprints of both PCBs. The hole J202 on both PCB should almost align. But do not solder the header yet.
 First solder a 1x02 2.54mm pin header on J202 of both PCBs to keep PCBs separated. Now solder the J201 pin header.
 
 Solder the red wire onto the TP203 pad of the display board.
 
-Connect power supply again. Observe about 50mA current. Disconnect power supply.
+Connect power supply again. Observe about 20mA current (or 50mA when flashed). Disconnect power supply.
 
 Make sure none of the pins (ESP32-S2, U1, J2) of this PCB touch display board:
 
