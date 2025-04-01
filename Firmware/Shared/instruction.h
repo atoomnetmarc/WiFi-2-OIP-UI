@@ -10,7 +10,7 @@ SPDX-License-Identifier: Apache-2.0
 
 #include <stdint.h>
 
-#define INSTRUCTION_SYSTEMINFO_READ 0x00
-#define INSTRUCTION_MESSAGE_WRITE   0x01
+#define INSTRUCTION_SYSTEMINFO_READ 0x01
+#define INSTRUCTION_MESSAGE_WRITE   0x11
 
 #endif
