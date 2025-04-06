@@ -7,10 +7,13 @@ SPDX-License-Identifier: Apache-2.0
 
 #include <WiFi.h>
 #include <WiFiGeneric.h>
+#include <Ticker.h>
 
 #include "config.h"
 #include "mqtt.h"
 #include "ota.h"
+
+Ticker tickerWifiCheckConnection;
 
 String hostname;
 
@@ -66,6 +69,29 @@ void WiFiEvent(WiFiEvent_t event) {
     }
 }
 
+void WifiBeginNext() {
+    static uint8_t ssidCounter = 0;
+
+    if (ssidCounter == 0) {
+        WiFi.begin(ssid1, password1);
+    } else {
+        WiFi.begin(ssid2, password2);
+    }
+
+    ssidCounter++;
+    if (ssidCounter > 1) {
+        ssidCounter = 0;
+    }
+
+    WiFi.setAutoReconnect(true);
+}
+
+void WifiCheckConnection() {
+    if (!WiFi.isConnected()) {
+        WifiBeginNext();
+    }
+}
+
 void WificSetup() {
     String mac = WiFi.macAddress();
     mac.replace(F(":"), F(""));
@@ -76,14 +102,19 @@ void WificSetup() {
     WiFi.setSleep(wifi_ps_type_t::WIFI_PS_NONE);
     WiFi.mode(wifi_mode_t::WIFI_STA);
 
-    Serial.println("WiFi settings:");
-    Serial.println(ssid);
-    Serial.println(password);
+    Serial.println("WiFi settings 1:");
+    Serial.println(ssid1);
+    Serial.println(password1);
 
-    WiFi.begin(ssid, password);
-    WiFi.setAutoReconnect(true);
+    Serial.println("WiFi settings 2:");
+    Serial.println(ssid2);
+    Serial.println(password2);
+
+    WifiBeginNext();
 
     WiFi.onEvent(WiFiEvent);
+
+    tickerWifiCheckConnection.attach_ms(10000, WifiCheckConnection);
 }
 
 void WiFicLoop() {

@@ -8,8 +8,12 @@ SPDX-License-Identifier: Apache-2.0
 #include "config.h"
 
 // WiFi configuration.
-const char *ssid = WIFI_SSID;
-const char *password = WIFI_PASSWORD;
+const char *ssid1 = WIFI1_SSID;
+const char *password1 = WIFI1_PASSWORD;
+
+// Another WiFi configuration.
+const char *ssid2 = WIFI2_SSID;
+const char *password2 = WIFI2_PASSWORD;
 
 // OTA configuration.
 const char *otapassword = OTA_PASSWORD;

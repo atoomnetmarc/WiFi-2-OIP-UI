@@ -11,8 +11,12 @@ SPDX-License-Identifier: Apache-2.0
 #define config_h
 
 // WiFi configuration.
-extern const char *ssid;
-extern const char *password;
+extern const char *ssid1;
+extern const char *password1;
+
+// Another WiFi configuration.
+extern const char *ssid2;
+extern const char *password2;
 
 // OTA configuration.
 extern const char *otapassword;

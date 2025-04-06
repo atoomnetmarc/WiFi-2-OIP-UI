@@ -21,6 +21,7 @@ SPDX-License-Identifier: Apache-2.0
 AsyncMqttClient mqttClient;
 Ticker mqttReconnectTimer;
 String baseTopic;
+float mqttReconnectTimerTime = 0;
 
 void connectToMqtt() {
     Serial.print(F("Attempting MQTT connection to "));
@@ -60,6 +61,7 @@ void MqttPublishStuff() {
 }
 
 void onMqttConnect(bool sessionPresent) {
+    mqttReconnectTimerTime = 2;
     Serial.println(F("Mqtt connected"));
     // Subscribe
     String commandTopic = String(baseTopic + String(F("command")));
@@ -81,7 +83,11 @@ void onMqttDisconnect(AsyncMqttClientDisconnectReason reason) {
     Serial.println(F("Got disconnected from MQTT"));
 
     if (WiFi.isConnected()) {
-        mqttReconnectTimer.once(2, connectToMqtt);
+        if (mqttReconnectTimerTime < 60) {
+            mqttReconnectTimerTime += 1;
+        }
+
+        mqttReconnectTimer.once(mqttReconnectTimerTime, connectToMqtt);
     }
 }
 
@@ -158,8 +164,8 @@ void MqttSetup() {
     mqttClient.onPublish(onMqttPublish);
 
     mqttClient.setCleanSession(true);
-    String clientid = "lcd-";
-    clientid += WiFi.macAddress();
+
+    static String clientid = "lcd-" + mac;
     mqttClient.setClientId(clientid.c_str());
     mqttClient.setCredentials(mqtt_user, mqtt_pass);
     willTopic = baseTopic + String(F("state/current"));
