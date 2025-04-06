@@ -28,7 +28,6 @@ typedef union {
 /**
  * System information
  */
-#define MESSAGE_ID_SYSTEM_INFORMATION 0
 typedef struct __attribute__((packed)) {
     uint32_t buildTime;
 } MessageSystemInformation_t;

@@ -93,6 +93,9 @@ ISR(PCINT0_vect) {
 void setup(void) {
     wdt_enable(WDTO_8S);
 
+    memset(leds, ledStateOff, sizeof(leds));
+    leds[40] = ledStateFadeOn; // LCD backlight.
+
     io_setup();
     event_setup();
     timer_setup();
@@ -102,8 +105,6 @@ void setup(void) {
     sei();
 
     systemInfo.messageSystemInformationData.buildTime = NODE_FIRMWARE_BUILD_TIME;
-
-    leds[40] = ledStateFadeBlinkSlowOn;
 }
 
 void loop(void) {
@@ -114,34 +115,6 @@ void loop(void) {
 
     if (event & EV_TIMER_1MS) {
         event &= ~EV_TIMER_1MS;
-
-        static uint16_t ledGreenTimer = 0;
-        static uint8_t ledGreenCounter = 0;
-        ledGreenTimer++;
-        if (ledGreenTimer == 109) {
-            ledGreenTimer = 0;
-            for (uint8_t i = 0; i < 20; i++) {
-                leds[i + 20] = ledStateFadeOff;
-            }
-            leds[ledGreenCounter + 20] = ledStateOn;
-            if (++ledGreenCounter == 20) {
-                ledGreenCounter = 0;
-            }
-        }
-
-        static uint16_t ledRedTimer = 0;
-        static int8_t ledRedCounter = 19;
-        ledRedTimer++;
-        if (ledRedTimer == 503) {
-            ledRedTimer = 0;
-            for (uint8_t i = 0; i < 20; i++) {
-                leds[i] = ledStateFadeSlowOff;
-            }
-            leds[ledRedCounter] = ledStateFadeOn;
-            if (--ledRedCounter < 0) {
-                ledRedCounter = 19;
-            }
-        }
 
         // Calculate new PWM target values of LEDS for the faster effects.
         static uint16_t updatePWMValuesCounterFast = 0;

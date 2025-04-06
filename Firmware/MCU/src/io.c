@@ -15,7 +15,7 @@ volatile uint8_t ledsPWM[41];
 
 uint8_t ledColumnCounter = 1;
 uint8_t ledPWMCounter = 0;
-uint8_t lcdReset = 0;
+uint8_t lcdReset = 1;
 
 void io_setup(void) {
     // Set SPKR_PWM and SPKR_EN low.
