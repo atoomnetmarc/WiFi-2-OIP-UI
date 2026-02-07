@@ -1,13 +1,13 @@
 /*
 
-Copyright 2024-2025 Marc Ketel
+Copyright 2024-2026 Marc Ketel
 SPDX-License-Identifier: Apache-2.0
 
 */
 
+#include <Ticker.h>
 #include <WiFi.h>
 #include <WiFiGeneric.h>
-#include <Ticker.h>
 
 #include "config.h"
 #include "mqtt.h"
