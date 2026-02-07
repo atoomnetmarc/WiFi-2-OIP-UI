@@ -6,7 +6,16 @@ Unfinished. Untested.
 
 # What?
 
-This is a PCB that connects an ESP32 to a reclaimed display board from an obsolete [Octalarm-IP](https://www.adesys.nl/en/product-octalarm-ip-adesys2).
+This is a **WiFi-connected display with LEDs** that gives new life to a reclaimed display board from an obsolete [Octalarm-IP](https://www.adesys.nl/en/product-octalarm-ip-adesys2).
+
+The project consists of:
+
+- A custom PCB that hosts an **ESP32-S2** microcontroller with WiFi connectivity
+- A **128x64 LCD display** (Crystal Clear Technology G64128S18YBW00 with NT7534 controller)
+- **20 red and 20 green LEDs** for status indication
+- **Backlight control** for the LCD
+
+The ESP32-S2 controls the display and LEDs via SPI.
 
 # BOM
 
@@ -30,7 +39,7 @@ Solder the pin headers on the ESP32-S2, use some old IDC connectors to perfectly
 
 ![](esp32-s2-idc.jpg)
 
-Solder F1, D1.  Solder U1 (the buck converter) laying flat (PCBs are now on the same plane). Cut pins (6 cuts) of U1 flush with PCB. Solder J2, C1 and C2. Cut pins of J2 flush with PCB. Solder one end of the red wire to TP203 on the bottom. The right side of the PCB now look like this:
+Solder F1, D1. Solder U1 (the buck converter) laying flat (PCBs are now on the same plane). Cut pins (6 cuts) of U1 flush with PCB. Solder J2, C1 and C2. Cut pins of J2 flush with PCB. Solder one end of the red wire to TP203 on the bottom. The right side of the PCB now look like this:
 
 ![](WiFi-2-OIP-UI-flat-U1.jpg)
 
@@ -57,7 +66,7 @@ Make sure none of the pins (ESP32-S2, U1, J2) of this PCB touch display board:
 
 # Firmware
 
-Flash the firmware of the ESP32-S2. The firmware of the ATmega48 MCU of the display board is embedded in the  ESP32-S2 firmware and will be flashed by the ESP32-S2.
+Flash the firmware of the ESP32-S2. The firmware of the ATmega48 MCU of the display board is embedded in the ESP32-S2 firmware and will be flashed by the ESP32-S2.
 
 # 3D-printed stand
 
@@ -71,18 +80,18 @@ Information about the display board.
 
 ## Pinout J201
 
-| #     | name          | remarks       | ESP32 pin |
-| --    | --            | --            | --        |
-| 1     | GND           |               |
-| 2     | V+            | unused        |
-| 3     | MCU reset     |               | IO5
-| 4     | MCU interrupt | active low    | IO1
-| 5     | LCD RS        |               | IO4
-| 6     | SPI clock     |               | IO7
-| 7     | SPI MISO      |               | IO9
-| 8     | SPI MOSI      |               | IO11
-| 9     | SPI SS LCD    | active low    | IO14
-| 10    | SPI SS MCU    | active low    | IO12
+| #   | name          | remarks    | ESP32 pin |
+| --- | ------------- | ---------- | --------- |
+| 1   | GND           |            |
+| 2   | V+            | unused     |
+| 3   | MCU reset     |            | IO5       |
+| 4   | MCU interrupt | active low | IO1       |
+| 5   | LCD RS        |            | IO4       |
+| 6   | SPI clock     |            | IO7       |
+| 7   | SPI MISO      |            | IO9       |
+| 8   | SPI MOSI      |            | IO11      |
+| 9   | SPI SS LCD    | active low | IO14      |
+| 10  | SPI SS MCU    | active low | IO12      |
 
 ## LCD
 
@@ -96,41 +105,41 @@ The MCU is a TQFP-32 [Atmega48](https://www.microchip.com/en-us/product/atmega48
 
 ## Testpoints
 
-| #     | name          | remarks   |
-| --    | --            | --        |
-| TP201 | MCU PD1       | not used
-| TP202 | V+            | not used
-| TP203 | 5V
-| TP204 | 3.3V
-| TP205 | MCU PC5, PC6  | not used
-| TP206 | SPI clock
-| TP207 | SPI MISO
-| TP208 | SPI MOSI
-| TP209 | MCU SS
-| TP210 | MCU reset
-| TP211 | MCU interrupt
-| TP212 | 5V
-| TP213 | GND
-| TP214 | 3.3V
-| TP301 |               | not used
-| TP302 |               | not used
-| TP303 |               | not used
-| TP304 |               | not used
-| TP305 |               | not used
-| TP306 |               | not used
-| TP307 |               | not used
-| TP308 |               | not used
-| TP309 |               | not used
-| TP310 |               | not used
-| TP402 | LCD reset
-| TP404 | LCD SS
-| TP405 | LCD RS
-| TP501 |               | not used
-| TP502 |               | not used
-| TP503 | MCU ADC7      | not used
-| TP504 | MCU PB1       | not used
-| TP506 |               | not used
-| TP507 |               | not used
-| TP508 |               | not used
+| #     | name          | remarks  |
+| ----- | ------------- | -------- |
+| TP201 | MCU PD1       | not used |
+| TP202 | V+            | not used |
+| TP203 | 5V            |
+| TP204 | 3.3V          |
+| TP205 | MCU PC5, PC6  | not used |
+| TP206 | SPI clock     |
+| TP207 | SPI MISO      |
+| TP208 | SPI MOSI      |
+| TP209 | MCU SS        |
+| TP210 | MCU reset     |
+| TP211 | MCU interrupt |
+| TP212 | 5V            |
+| TP213 | GND           |
+| TP214 | 3.3V          |
+| TP301 |               | not used |
+| TP302 |               | not used |
+| TP303 |               | not used |
+| TP304 |               | not used |
+| TP305 |               | not used |
+| TP306 |               | not used |
+| TP307 |               | not used |
+| TP308 |               | not used |
+| TP309 |               | not used |
+| TP310 |               | not used |
+| TP402 | LCD reset     |
+| TP404 | LCD SS        |
+| TP405 | LCD RS        |
+| TP501 |               | not used |
+| TP502 |               | not used |
+| TP503 | MCU ADC7      | not used |
+| TP504 | MCU PB1       | not used |
+| TP506 |               | not used |
+| TP507 |               | not used |
+| TP508 |               | not used |
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
