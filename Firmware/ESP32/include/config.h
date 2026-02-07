@@ -21,7 +21,7 @@ extern const char *password2;
 // OTA configuration.
 extern const char *otapassword;
 
-// MQTT over websocket configuration.
+// MQTT configuration.
 extern const char *mqtt_host;
 extern const char *mqtt_user;
 extern const char *mqtt_pass;
